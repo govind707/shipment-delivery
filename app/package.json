@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "expo start --dev-client",
+    "strictlint": "eslint src/ --ext 'ts,tsx' --max-warnings 0 --cache",
     "android": "npx expo run:android",
     "ios": "npx expo run:ios",
     "web": "expo start --web"
