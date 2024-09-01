@@ -7,16 +7,15 @@ on:
         description: Build environment
         type: choice
         options:
-          - integration
-          - release
+          - preview
           - production
         required: true
-        default: "integration"
+        default: "preview"
       branch:
         description: Which branch to build from
         type: string
         required: true
-        default: "feature/m4_migration"
+        default: "master"
 
 permissions:
   contents: read
@@ -27,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./react-native-app
+        working-directory: ./app
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -37,7 +36,7 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
-          cache-dependency-path: react-native-app/package-lock.json
+          cache-dependency-path: app/package-lock.json
 
       - name: Npm Install
         run: npm install --prefer-offline
