@@ -1,0 +1,60 @@
+name: On Demand Build APK
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Build environment
+        type: choice
+        options:
+          - integration
+          - release
+          - production
+        required: true
+        default: "integration"
+      branch:
+        description: Which branch to build from
+        type: string
+        required: true
+        default: "feature/m4_migration"
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./react-native-app
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: react-native-app/package-lock.json
+
+      - name: Npm Install
+        run: npm install --prefer-offline
+
+      - name: Setup Expo and EAS
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          eas-version: latest
+          expo-cache: true
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Build app
+        id: build
+        shell: bash
+        run: |
+          eas build --platform android --profile ${{ inputs.environment }} --non-interactive --json > output.json
+          cat output.json
+          GET_URL=$(cat output.json|grep -Eo '"buildUrl": "https://expo[^ >]+')
+          echo "ANDROID_URL=$(echo ${GET_URL} | egrep -o 'https://expo[^ >]+')" >> $GITHUB_ENV

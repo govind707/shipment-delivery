@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "expo start --dev-client",
-    "strictlint": "eslint src/ --ext 'ts,tsx' --max-warnings 0 --cache",
+    "strictlint": "eslint src/ --max-warnings 0 --cache",
     "android": "npx expo run:android",
     "ios": "npx expo run:ios",
     "web": "expo start --web"
@@ -24,10 +24,10 @@
     "expo": "^50.0.17",
     "expo-checkbox": "^2.7.0",
     "expo-crypto": "^12.8.1",
+    "expo-device": "^5.9.4",
     "expo-document-picker": "^11.10.1",
     "expo-font": "^11.10.2",
     "expo-image-picker": "^14.7.1",
-    "expo-device": "^5.9.4",
     "expo-splash-screen": "^0.26.4",
     "expo-status-bar": "~1.11.1",
     "expo-updates": "^0.24.12",
@@ -46,9 +46,14 @@
   },
   "devDependencies": {
     "@babel/core": "^7.23.6",
+    "@eslint/js": "^9.9.1",
     "@types/react": "~18.2.45",
     "@types/validator": "^13.7.17",
+    "eslint": "^9.9.1",
+    "eslint-plugin-react": "^7.35.0",
+    "globals": "^15.9.0",
     "typescript": "^5.1.3",
+    "typescript-eslint": "^8.3.0",
     "zustand": "^4.4.7",
     "zustand-middleware-computed-state": "^0.1.3"
   },
