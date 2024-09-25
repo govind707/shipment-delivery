@@ -1,3 +1,10 @@
+# VideoLink:
+https://www.loom.com/share/c6f85b8368f247f5a2b8157413fa2827?sid=34dcd23b-9060-4d43-9447-cbeb8eea70a4
+
+
+# APK link: 
+https://expo.dev/artifacts/eas/6RBgutqucJCSbmM8AVi3Wn.apk
+
 # Setup
 
 - Clone the repo to your local machine
